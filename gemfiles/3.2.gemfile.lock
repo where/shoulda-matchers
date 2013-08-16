@@ -4,6 +4,13 @@ PATH
     shoulda-matchers (2.4.0.rc1)
       activesupport (>= 3.0.0)
 
+PATH
+  remote: ~/code/work/ours/appraisal
+  specs:
+    appraisal (0.5.2)
+      bundler
+      rake
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -34,9 +41,6 @@ GEM
     activesupport (3.2.13)
       i18n (= 0.6.1)
       multi_json (~> 1.0)
-    appraisal (0.5.1)
-      bundler
-      rake
     arel (3.0.2)
     aruba (0.5.1)
       childprocess (~> 0.3.6)
@@ -140,7 +144,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-jdbc-adapter
   activerecord-jdbcsqlite3-adapter
-  appraisal (~> 0.4)
+  appraisal!
   aruba
   bcrypt-ruby (~> 3.0.0)
   bourne (~> 1.3)

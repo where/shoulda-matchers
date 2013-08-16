@@ -1,4 +1,4 @@
-script: "bundle exec rake spec cucumber"
+script: "bundle exec rake"
 
 install:
   "bundle install"
