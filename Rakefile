@@ -29,6 +29,6 @@ task :appraise do
   if ARGV.empty?
     ARGV << 'rake'
   end
-  Rake::Task['appraisal'].invoke
   Rake::Task['appraisal:install'].invoke
+  Rake::Task['appraisal'].invoke
 end
