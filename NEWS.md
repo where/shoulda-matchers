@@ -1,5 +1,20 @@
 # HEAD
 
+* Fix `ensure_length_of` so that it uses the right message to validate when
+  `is_equal_to` is specified in conjunction with a custom message.
+
+* Fix Rails/Test::Unit integration to ensure that the test case classes we are
+  re-opening actually exist.
+
+* The `route` matcher now accepts specifying a controller/action pair as a
+  string instead of only a hash (e.g. `route(...).to('posts#index')` instead of
+  `route(...).to(controller: 'posts', action: 'index')`).
+
+# v 2.4.0
+
+* Fix a bug with the `validate_numericality_of` matcher that would not allow the
+  `with_message` option on certain submatchers.
+
 * Fix a regression with context-dependent validations in ActiveResource
 
 * shoulda-matchers is now fully compatible with Rails 4.

@@ -16,6 +16,7 @@ Matchers to test associations:
 describe Post do
   it { should belong_to(:user) }
   it { should have_many(:tags).through(:taggings) }
+  it { should accept_nested_attributes_for(:comments) }
 end
 
 describe User do
@@ -33,6 +34,7 @@ describe Post do
   it { should validate_uniqueness_of(:title).scoped_to(:user_id, :category_id) }
   it { should validate_presence_of(:body).with_message(/wtf/) }
   it { should validate_presence_of(:title) }
+  it { should validate_presence_of(:title).on(:update) }
   it { should validate_numericality_of(:user_id) }
   it { should ensure_inclusion_of(:status).in_array(['draft', 'public']) }
 end
