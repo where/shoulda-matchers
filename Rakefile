@@ -25,5 +25,5 @@ task :default do
 end
 
 task :appraise do
-  exec '(appraisal install || appraisal update) && appraisal rake'
+  exec 'appraisal install && appraisal rake'
 end
