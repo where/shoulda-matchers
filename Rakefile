@@ -25,10 +25,5 @@ task :default do
 end
 
 task :appraise do
-  # Work around issue with Appraisal: https://github.com/thoughtbot/appraisal/pull/59
-  if ARGV.empty?
-    ARGV << 'rake'
-  end
-  Rake::Task['appraisal:install'].invoke
-  Rake::Task['appraisal'].invoke
+  exec '(appraisal install || appraisal update) && appraisal rake'
 end
