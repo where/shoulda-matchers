@@ -28,6 +28,18 @@ module Shoulda # :nodoc:
       end
 
       class AllowValueMatcher # :nodoc:
+        class CouldNotSetAttributeError < Shoulda::Matchers::Error
+          def self.create(expected_value, actual_value)
+            super(expected_value: expected_value, actual_value: actual_value)
+          end
+
+          attr_accessor :expected_value, :actual_value
+
+          def message
+            "Expected value to be #{expected_value.inspect}, but was #{actual_value.inspect}."
+          end
+        end
+
         include Helpers
 
         attr_accessor :attribute_with_message
@@ -68,7 +80,7 @@ module Shoulda # :nodoc:
 
           values_to_match.none? do |value|
             self.value = value
-            instance.send("#{attribute_to_set}=", value)
+            set_and_double_check_attribute(instance, attribute_to_set, value)
             errors_match?
           end
         end
@@ -90,6 +102,17 @@ module Shoulda # :nodoc:
         attr_accessor :values_to_match, :message_finder_factory,
           :instance, :attribute_to_set, :attribute_to_check_message_against,
           :context, :value, :matched_error
+
+        def set_and_double_check_attribute(object, attribute_name, value)
+          object.send("#{attribute_name}=", value)
+
+          if object.respond_to?(attribute_name)
+            actual_value = object.send(attribute_name)
+            if value.nil? != actual_value.nil?
+              raise CouldNotSetAttributeError.create(value, actual_value)
+            end
+          end
+        end
 
         def errors_match?
           has_messages? && errors_for_attribute_match?
