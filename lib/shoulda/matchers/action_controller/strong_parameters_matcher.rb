@@ -31,6 +31,10 @@ module Shoulda
           self
         end
 
+        def description
+          "should permit #{permitted_params} for #{@verb}##{@action} in #{@context}"
+        end
+
         def matches?(controller = nil)
           simulate_controller_action && parameters_difference.empty?
         end
