@@ -15,7 +15,6 @@ module Shoulda
 
       class StrongParametersMatcher
         def initialize(*attributes_and_context)
-          ActiveSupport::Deprecation.warn 'The strong_parameters matcher is deprecated and will be removed in 2.0'
           @attributes = attributes_and_context[0...-1]
           @context = attributes_and_context.last
           @permitted_params = []
